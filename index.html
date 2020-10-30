@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch Sketch</title>
+   <!-- <link rel="stylesheet" href="style.css"> -->
+   <style>
+       :root{
+           --columns-row:2;
+       }
+       #grid-container{
+           display: grid;
+           grid-template-columns: repeat(var(--column-rows), 1fr);
+           grid-template-rows: repeat(var(--columns-row), 1fr);
+           width: 500px;
+           height: 300px;
+       }
+       div{
+           border: 1px solid rgb(57, 57, 83);
+       }
+       header{
+           margin:0 auto
+       }
+   </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Etch A Sketch</h1>
+        <button id="clickToEnter">Click to enter the number of rows</button>
+        <div id="grid-container"></div>
+    </header>
+
+    
+    <script>
+       let startBtn = document.getElementById('clickToEnter')
+            startBtn.addEventListener('click', generateGrid)
+        
+            function generateGrid() {
+                let gridContainer = document.getElementById('grid-container')
+                gridContainer.innerHTML=''
+
+                let numberOfRowsEntered = prompt("Enter the number of row?")
+         
+                let generatedGrid = numberOfRowsEntered * numberOfRowsEntered;
+
+                document.documentElement.style.setProperty("--columns-row",numberOfRowsEntered)
+
+                for(let i=0;i<numberOfRowsEntered;i++)
+                {
+                    let createDiv = document.createElement('div')
+                    document.getElementById('grid-container').appendChild(createDiv)
+                    //color
+                    createDiv.addEventListener('mouseenter',function () {
+                        this.style.backgroundColor='green'
+                    })
+                }
+            }
+    </script>
+</body>
+</html>
